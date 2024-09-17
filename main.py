@@ -4,8 +4,10 @@ from game.text_processor import TextProcessor
 from game.score_calculator import ScoreCalculator
 
 
-
 def main():
+    """
+    The main function to initialize and start the game.
+    """
     wikipedia_service = WikipediaService()
     text_processor = TextProcessor()
     score_calculator = ScoreCalculator()
