@@ -47,10 +47,15 @@ def remove_every_5_word(text):
     return modified_text, removed_words
 
 # miros function
+
+
 def guess_missing_words(removed_words):
+    print()
+    counter = 0
     guessed_words = []
     for word in removed_words:
-        guess = input(f"Guess the missing word: ")
+        counter = counter + 1
+        guess = input(f"Guess the missing word number {counter}: ")
         guessed_words.append(guess)
 
     return guessed_words
@@ -58,12 +63,6 @@ def guess_missing_words(removed_words):
 
 def display_text_with_blanks(text):
     print(text[0])
-
-# TODO: Create  a method to take a user input for guessing the missing words
-# TODO: Use while loop for user to take all required input
-# TODO: Create a new method for checking ccounting correct answer
-
-# TODO: Create a method displaying correct & incorrect  annswer. Show result in percentage(Gerald)
 
 
 def main():
@@ -76,9 +75,7 @@ def main():
     display_text_with_blanks(result)
     removed_words = result[1]
     missed_words = guess_missing_words(removed_words)
-    
-    
-    
+
 
 if __name__ == "__main__":
     main()
