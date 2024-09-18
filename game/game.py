@@ -20,7 +20,34 @@ class Game:
         self.text_processor = text_processor
         self.score_calculator = score_calculator
 
+
     def start(self):
+        while True:
+            self.run_game()
+            if not self.ask_to_continue():
+                print(f"{Fore.GREEN}Thank you for playing!{Style.RESET_ALL}")
+                break
+
+
+    def ask_to_continue(self):
+        """
+        Ask the user if they want to continue playing the game after each round.
+
+        Returns:
+            bool: True if the user wants to continue, False otherwise.
+        """
+        while True:
+            # Ask the user if they want to play again (Yes/No)
+            user_choice = input(f"{Fore.YELLOW}Do you want to play again? (yes/no): {Style.RESET_ALL}").strip().lower()
+            print()
+            if user_choice == 'yes':
+                return True
+            elif user_choice == 'no':
+                return False
+            else:
+                print(f"{Fore.RED}Invalid input. Please type 'yes' or 'no'.{Style.RESET_ALL}")
+
+    def run_game(self):
         """
         Start the game by displaying the title, taking user input, fetching a Wikipedia summary, 
         modifying the summary, and then asking the user to guess the removed words.

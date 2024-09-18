@@ -1,4 +1,5 @@
 import string
+import re
 
 class TextProcessor:
 
@@ -45,11 +46,17 @@ class TextProcessor:
 
         # Iterate over the list of words, starting at the 5th word and then every 5th word after that
         for i in range(4, len(words), 5):
-            removed_words.append(words[i])  # Add the removed word to the list
-            words[i] = "_" * len(words[i])  # Replace the removed word with underscores of the same length
+            removed_word = words[i]
+            cleaned_word = self.remove_special_characters(removed_word)
+            removed_words.append(cleaned_word)
+            words[i] = "_" * len(words[i])
         
         # Join the modified list of words back into a string
         modified_text = " ".join(words)
         
         # Return the modified text and the list of removed words
         return modified_text, removed_words
+
+    def remove_special_characters(self, word: str) -> str:
+        """  remove special character from the word"""
+        return re.sub(r'\W+', '', word)
