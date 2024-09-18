@@ -29,24 +29,6 @@ class Game:
                 break
 
 
-    def ask_to_continue(self):
-        """
-        Ask the user if they want to continue playing the game after each round.
-
-        Returns:
-            bool: True if the user wants to continue, False otherwise.
-        """
-        while True:
-            # Ask the user if they want to play again (Yes/No)
-            user_choice = input(f"{Fore.YELLOW}Do you want to play again? (yes/no): {Style.RESET_ALL}").strip().lower()
-            print()
-            if user_choice == 'yes':
-                return True
-            elif user_choice == 'no':
-                return False
-            else:
-                print(f"{Fore.RED}Invalid input. Please type 'yes' or 'no'.{Style.RESET_ALL}")
-
     def run_game(self):
         """
         Start the game by displaying the title, taking user input, fetching a Wikipedia summary, 
@@ -147,4 +129,22 @@ class Game:
         print()
 
         return guessed_words
-    
+
+
+    def ask_to_continue(self):
+        """
+        Ask the user if they want to continue playing the game after each round.
+
+        Returns:
+            bool: True if the user wants to continue, False otherwise.
+        """
+        while True:
+            # Ask the user if they want to play again (Yes/No)
+            user_choice = input(f"{Fore.YELLOW}Do you want to play again? (yes/no): {Style.RESET_ALL}").strip().lower()
+            print()
+            if user_choice == 'yes':
+                return True
+            elif user_choice == 'no':
+                return False
+            else:
+                print(f"{Fore.RED}Invalid input. Please type 'yes' or 'no'.{Style.RESET_ALL}")
