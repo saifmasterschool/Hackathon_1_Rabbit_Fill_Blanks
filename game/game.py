@@ -1,3 +1,10 @@
+import sys
+
+import colorama
+from colorama import Fore, Back, Style
+colorama.init()
+import time
+
 class Game:
     def __init__(self, wikipedia_service, text_processor, score_calculator):
         self.wikipedia_service = wikipedia_service
@@ -15,7 +22,6 @@ class Game:
         if summary_result:
             summary_result = self.text_processor.make_case_insensitive(summary_result)
             modified_text, removed_words = self.text_processor.remove_every_5th_word(summary_result)
-            print(summary_result)
             self.display_summary_with_blanks(modified_text)
             guessed_words = self.get_user_guesses(removed_words)
             self.score_calculator.check_answers(removed_words, guessed_words)
@@ -24,11 +30,26 @@ class Game:
 
     def display_title(self):
         """Displaying the welcome message"""
-        print("*** Welcome to 'Word Guessing Game' ***")
+        self.blinking_and_growing_text(f"{Fore.RED}  **    W E L C O M E    TO    G A M E    **", times=2, speed=0.5)
+
+    def blinking_and_growing_text(self, text, times=5, speed=0.5):
+        for i in range(times):
+            # Blinking efekt: show text
+            sys.stdout.write('\r' + text)
+            sys.stdout.flush()
+            time.sleep(speed)
+            # Blinking efekt: hide the text temporarily
+            sys.stdout.write('\r' + ' ' * len(text))
+            sys.stdout.flush()
+            time.sleep(speed)
+            # again show text after blinkling
+            sys.stdout.write('\r' + text)
+            sys.stdout.flush()
+        print()
 
     def ask_user_for_text(self):
         """Ask for user input for choosing the summary from the wikipedia"""
-        return input('Enter a keyword or a topic to search on Wikipedia: ')
+        return  input(f"{Fore.BLACK}Enter a keyword or a topic to search on Wikipedia:")
 
     def display_summary_with_blanks(self, text):
         """Display the summary with blank space"""
