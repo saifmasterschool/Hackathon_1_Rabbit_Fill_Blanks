@@ -120,3 +120,4 @@ class Game:
         print()
 
         return guessed_words
+    
